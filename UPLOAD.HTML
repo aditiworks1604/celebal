@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upload Documents</title>
+  <style>
+    body { text-align: center; font-family: sans-serif; margin-top: 100px; }
+    input { margin: 10px; }
+    #msg { color: green; }
+  </style>
+</head>
+<body>
+
+  <h2>Upload Your Document</h2>
+
+  <form id="uploadForm">
+    <input type="file" id="doc" accept=".pptx,.docx,.xlsx"><br>
+    <button type="submit">Upload</button>
+  </form>
+
+  <p id="msg"></p>
+
+  <script>
+    document.getElementById("uploadForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      let file = document.getElementById("doc").files[0];
+      
+      if (!file) {
+        document.getElementById("msg").textContent = "Please select a file.";
+        return;
+      }
+
+
+      if (allowed.includes(file.type)) {
+        document.getElementById("msg").textContent = "File uploaded: " + file.name;
+      } else {
+        document.getElementById("msg").textContent = "Invalid file type.";
+      }
+    });
+  </script>
+
+</body>
+</html>
